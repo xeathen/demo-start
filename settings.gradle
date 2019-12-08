@@ -2,5 +2,5 @@ include 'demo-service'
 include 'demo-mongo-migration'
 include 'demo-service-db-migration'
 include 'demo-service-interface'
-include 'demo-service-interface'
+include 'demo-site'
 

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 /**
  * @author Ethan
  */
-@Table(name = "customer")
+@Table(name = "customers")
 public class Customer {
     @PrimaryKey(autoIncrement = true)
     @Column(name = "id")

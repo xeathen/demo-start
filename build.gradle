@@ -40,6 +40,13 @@ configure(subprojects.findAll { it.name.matches('.*-service-interface') }) {
         implementation "core.framework:core-ng-api:${coreNGVersion}"
     }
 }
+configure([project(':demo-service'),
+           project(':demo-site')]) {
+    dependencies {
+        implementation "core.framework:core-ng:${coreNGVersion}"
+        testImplementation "core.framework:core-ng-test:${coreNGVersion}"
+    }
+}
 
 project(':demo-service') {
     dependencies {
@@ -61,4 +68,7 @@ project(':demo-mongo-migration') {
         implementation "core.framework:core-ng:${coreNGVersion}"
         testImplementation "core.framework:core-ng-test:${coreNGVersion}"
     }
+}
+project(':demo-site') {
+
 }
