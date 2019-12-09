@@ -1,6 +1,8 @@
 include 'demo-service'
-include 'demo-mongo-migration'
+include 'product-mongo-migration'
 include 'demo-service-db-migration'
 include 'demo-service-interface'
 include 'demo-site'
+include 'product-service'
+include 'product-service-interface'
 

@@ -1,4 +1,4 @@
-package app.demo;
+package app;
 
 import core.framework.module.App;
 import core.framework.module.SystemModule;
@@ -6,12 +6,10 @@ import core.framework.module.SystemModule;
 /**
  * @author Ethan
  */
-public class DemoApp extends App {
-
+public class ProductServiceApp extends App {
     @Override
     protected void initialize() {
         load(new SystemModule("sys.properties"));
-//        load(new DemoModule());
-        load(new CustomerModule());
+        load(new ProductModule());
     }
 }

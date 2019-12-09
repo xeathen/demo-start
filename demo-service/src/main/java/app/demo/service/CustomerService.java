@@ -2,13 +2,19 @@ package app.demo.service;
 
 import app.demo.api.customer.CreateCustomerRequest;
 import app.demo.api.customer.CreateCustomerResponse;
+import app.demo.api.customer.DeleteCustomerResponse;
+import app.demo.api.customer.GetCustomerResponse;
+import app.demo.api.customer.UpdateCustomerRequest;
+import app.demo.api.customer.UpdateCustomerResponse;
 import app.demo.domain.Customer;
 import app.demo.domain.CustomerStatus;
 import core.framework.db.Repository;
 import core.framework.inject.Inject;
 import core.framework.web.exception.ConflictException;
+import core.framework.web.exception.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -20,9 +26,17 @@ public class CustomerService {
     @Inject
     Repository<Customer> customerRepository;
 
+    public GetCustomerResponse get(Long id) {
+        Customer customer = customerRepository.get(id).orElseThrow(() -> new NotFoundException("customer not found, id=" + id));
+        GetCustomerResponse response = new GetCustomerResponse();
+        response.id = id;
+        response.email = customer.email;
+        response.firstName = customer.firstName;
+        response.lastName = customer.lastName;
+        return response;
+    }
+
     public CreateCustomerResponse create(CreateCustomerRequest request) {
-        logger.warn(request.email);
-        logger.warn(customerRepository.toString());
         Optional<Customer> existingCustomer = customerRepository.selectOne("email = ?", request.email);
         if (existingCustomer.isPresent()) {
             throw new ConflictException("customer already exists, email=" + request.email);
@@ -43,5 +57,29 @@ public class CustomerService {
         return response;
     }
 
+    public UpdateCustomerResponse update(Long id, UpdateCustomerRequest request) {
+        UpdateCustomerResponse response = new UpdateCustomerResponse();
+        response.id = id;
+        Customer customer = customerRepository.get(id).orElseThrow(() -> new NotFoundException("customer not found, id=" + id));
+        customer.updatedTime = LocalDateTime.now();
+        customer.firstName = request.firstName;
+        response.firstName = request.firstName;
+        if (request.lastName != null) {
+            customer.lastName = request.lastName;
+            response.lastName = request.lastName;
+        }
+        customer.email = request.email;
+        response.email = request.email;
+        customerRepository.partialUpdate(customer);
+        return response;
+    }
 
+    public DeleteCustomerResponse delete(Long id) {
+        DeleteCustomerResponse response = new DeleteCustomerResponse();
+        response.id = id;
+        Customer customer = customerRepository.get(id).orElseThrow(() -> new NotFoundException("customer not found, id=" + id));
+        response.email = customer.email;
+        customerRepository.delete(id);
+        return response;
+    }
 }

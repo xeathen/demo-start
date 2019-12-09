@@ -3,7 +3,6 @@ package app.demo.web;
 import app.demo.api.CustomerWebService;
 import app.demo.api.customer.CreateCustomerRequest;
 import app.demo.api.customer.CreateCustomerResponse;
-import app.demo.api.customer.DeleteCustomerRequest;
 import app.demo.api.customer.DeleteCustomerResponse;
 import app.demo.api.customer.GetCustomerResponse;
 import app.demo.api.customer.UpdateCustomerRequest;
@@ -21,8 +20,7 @@ public class CustomerWebServiceImpl implements CustomerWebService {
 
     @Override
     public GetCustomerResponse get(Long id) {
-//        return customerService.get(id);
-        return null;
+        return customerService.get(id);
     }
 
     @Override
@@ -32,12 +30,11 @@ public class CustomerWebServiceImpl implements CustomerWebService {
 
     @Override
     public UpdateCustomerResponse update(Long id, UpdateCustomerRequest request) {
-//        return customerService.update(id, request);
-        return null;
+        return customerService.update(id, request);
     }
 
     @Override
-    public DeleteCustomerResponse delete(DeleteCustomerRequest request) {
-        return null;
+    public DeleteCustomerResponse delete(Long id) {
+        return customerService.delete(id);
     }
 }

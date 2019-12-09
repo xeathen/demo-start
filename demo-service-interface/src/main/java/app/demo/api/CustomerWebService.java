@@ -2,13 +2,12 @@ package app.demo.api;
 
 import app.demo.api.customer.CreateCustomerRequest;
 import app.demo.api.customer.CreateCustomerResponse;
-import app.demo.api.customer.GetCustomerRequest;
-import app.demo.api.customer.DeleteCustomerRequest;
 import app.demo.api.customer.DeleteCustomerResponse;
 import app.demo.api.customer.GetCustomerResponse;
 import app.demo.api.customer.UpdateCustomerRequest;
 import app.demo.api.customer.UpdateCustomerResponse;
 import core.framework.api.http.HTTPStatus;
+import core.framework.api.web.service.DELETE;
 import core.framework.api.web.service.GET;
 import core.framework.api.web.service.POST;
 import core.framework.api.web.service.PUT;
@@ -34,7 +33,7 @@ public interface CustomerWebService {
     @Path("/customer/:id")
     UpdateCustomerResponse update(@PathParam("id") Long id, UpdateCustomerRequest request);
 
-    @GET
-    @Path("/customer")
-    DeleteCustomerResponse delete(DeleteCustomerRequest request);
+    @DELETE
+    @Path("/customer/:id")
+    DeleteCustomerResponse delete(@PathParam("id") Long id);
 }
