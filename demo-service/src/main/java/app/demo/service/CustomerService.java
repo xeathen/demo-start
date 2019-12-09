@@ -51,9 +51,6 @@ public class CustomerService {
         logger.debug(customer.toString() + "," + customer.firstName);
         CreateCustomerResponse response = new CreateCustomerResponse();
         response.id = customer.id;
-        response.email = customer.email;
-        response.firstName = customer.firstName;
-        response.lastName = customer.lastName;
         return response;
     }
 

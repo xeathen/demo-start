@@ -1,7 +1,12 @@
 package app;
 
+import app.product.api.BOProductWebService;
+import app.product.api.ProductWebService;
 import app.product.domain.Product;
+import app.product.service.BOProductService;
 import app.product.service.ProductService;
+import app.product.web.BOProductWebServiceImpl;
+import app.product.web.ProductWebServiceImpl;
 import core.framework.module.Module;
 import core.framework.mongo.module.MongoConfig;
 
@@ -15,6 +20,8 @@ public class ProductModule extends Module {
         config.uri(requiredProperty("sys.mongo.uri"));
         config.collection(Product.class);
         bind(ProductService.class);
-//        bean(ProductService.class).create();
+        bind(BOProductService.class);
+        api().service(ProductWebService.class, bind(ProductWebServiceImpl.class));
+        api().service(BOProductWebService.class, bind(BOProductWebServiceImpl.class));
     }
 }

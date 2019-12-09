@@ -40,6 +40,7 @@ configure(subprojects.findAll { it.name.matches('.*-service-interface') }) {
         implementation "core.framework:core-ng-api:${coreNGVersion}"
     }
 }
+
 configure([project(':demo-service'),
            project(':demo-site')]) {
     apply from: file("${rootDir}/gradle/app.gradle")
@@ -65,14 +66,12 @@ project(':demo-service') {
 }
 
 project(':demo-service-db-migration') {
-
     dependencies {
         implementation "core.framework:core-ng:${coreNGVersion}"
         testImplementation "core.framework:core-ng-test:${coreNGVersion}"
     }
 }
 project(':product-mongo-migration') {
-
     dependencies {
         implementation "core.framework:core-ng:${coreNGVersion}"
         testImplementation "core.framework:core-ng-test:${coreNGVersion}"
@@ -81,13 +80,12 @@ project(':product-mongo-migration') {
 project(':demo-site') {
     dependencies {
         implementation project(':demo-service-interface')
-
     }
-
 }
 
 project(':product-service') {
     dependencies {
+        implementation "core.framework:core-ng-mongo:${coreNGVersion}"
         implementation project(':product-service-interface')
     }
 }
