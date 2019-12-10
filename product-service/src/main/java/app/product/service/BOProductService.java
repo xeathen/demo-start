@@ -23,7 +23,7 @@ public class BOProductService {
     @Inject
     MongoCollection<Product> productCollection;
 
-    public BOGetProductResponse get(Long id) {
+    public BOGetProductResponse get(String id) {
         BOGetProductResponse response = new BOGetProductResponse();
         Optional<Product> product = productCollection.get(id);
         response.id = product.get().id;
@@ -33,19 +33,33 @@ public class BOProductService {
     }
 
     public BOCreateProductResponse create(BOCreateProductRequest request) {
+        BOCreateProductResponse response = new BOCreateProductResponse();
         Product product = new Product();
         product.id = UUID.randomUUID().toString();
-        product.name = "The Burger";
-        product.description = "This is a burger";
+        response.id = product.id;
+        product.name = request.name;
+        product.description = request.description;
         productCollection.insert(product);
-        return null;
+        return response;
     }
 
-    public BOUpdateProductResponse update(Long id, BOUpdateProductRequest request) {
-        return null;
+    public BOUpdateProductResponse update(String id, BOUpdateProductRequest request) {
+        BOUpdateProductResponse response = new BOUpdateProductResponse();
+        Product product = new Product();
+        product.id = id;
+        response.id = id;
+        product.name = request.name;
+        response.name = request.name;
+        product.description = request.description;
+        response.description = request.description;
+        productCollection.replace(product);
+        return response;
     }
 
-    public BODeleteProductResponse delete(Long id) {
-        return null;
+    public BODeleteProductResponse delete(String id) {
+        BODeleteProductResponse response = new BODeleteProductResponse();
+        response.id = id;
+        productCollection.delete(id);
+        return response;
     }
 }

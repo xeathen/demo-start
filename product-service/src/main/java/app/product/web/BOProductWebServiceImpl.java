@@ -21,7 +21,7 @@ public class BOProductWebServiceImpl implements BOProductWebService {
     BOProductService boProductService;
 
     @Override
-    public BOGetProductResponse get(Long id) {
+    public BOGetProductResponse get(String id) {
         return boProductService.get(id);
     }
 
@@ -31,12 +31,12 @@ public class BOProductWebServiceImpl implements BOProductWebService {
     }
 
     @Override
-    public BOUpdateProductResponse update(Long id, BOUpdateProductRequest request) {
+    public BOUpdateProductResponse update(String id, BOUpdateProductRequest request) {
         return boProductService.update(id, request);
     }
 
     @Override
-    public BODeleteProductResponse delete(Long id) {
+    public BODeleteProductResponse delete(String id) {
         return boProductService.delete(id);
     }
 }

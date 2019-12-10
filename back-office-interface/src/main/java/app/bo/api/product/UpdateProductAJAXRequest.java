@@ -1,4 +1,4 @@
-package app.product.api.product;
+package app.bo.api.product;
 
 import core.framework.api.json.Property;
 import core.framework.api.validate.NotBlank;
@@ -7,7 +7,7 @@ import core.framework.api.validate.NotNull;
 /**
  * @author Ethan
  */
-public class BOCreateProductRequest {
+public class UpdateProductAJAXRequest {
     @NotNull
     @NotBlank
     @Property(name = "name")

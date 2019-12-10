@@ -41,8 +41,8 @@ configure(subprojects.findAll { it.name.matches('.*-service-interface') }) {
     }
 }
 
-configure([project(':demo-service'),
-           project(':demo-site')]) {
+configure([project(':customer-service'),
+           project(':customer-service-interface')]) {
     apply from: file("${rootDir}/gradle/app.gradle")
     dependencies {
         implementation "core.framework:core-ng:${coreNGVersion}"
@@ -50,7 +50,8 @@ configure([project(':demo-service'),
     }
 }
 
-configure([project(':product-service')]) {
+configure([project(':back-office'),
+           project(':back-office-interface')]) {
     apply from: file("${rootDir}/gradle/app.gradle")
     dependencies {
         implementation "core.framework:core-ng:${coreNGVersion}"
@@ -58,28 +59,20 @@ configure([project(':product-service')]) {
     }
 }
 
-project(':demo-service') {
+
+configure([project(':product-service'),
+           project(':product-service-interface')]) {
+    apply from: file("${rootDir}/gradle/app.gradle")
     dependencies {
-        implementation project(':demo-service-interface')
+        implementation "core.framework:core-ng:${coreNGVersion}"
+        testImplementation "core.framework:core-ng-test:${coreNGVersion}"
+    }
+}
+
+project(':customer-service') {
+    dependencies {
+        implementation project(':customer-service-interface')
         runtimeOnly 'mysql:mysql-connector-java:8.0.17'
-    }
-}
-
-project(':demo-service-db-migration') {
-    dependencies {
-        implementation "core.framework:core-ng:${coreNGVersion}"
-        testImplementation "core.framework:core-ng-test:${coreNGVersion}"
-    }
-}
-project(':product-mongo-migration') {
-    dependencies {
-        implementation "core.framework:core-ng:${coreNGVersion}"
-        testImplementation "core.framework:core-ng-test:${coreNGVersion}"
-    }
-}
-project(':demo-site') {
-    dependencies {
-        implementation project(':demo-service-interface')
     }
 }
 
@@ -87,6 +80,14 @@ project(':product-service') {
     dependencies {
         implementation "core.framework:core-ng-mongo:${coreNGVersion}"
         implementation project(':product-service-interface')
+    }
+}
+
+project(':back-office') {
+    dependencies {
+        implementation project(':back-office-interface')
+        implementation project(':product-service-interface')
+        implementation project(':customer-service-interface')
     }
 }
 

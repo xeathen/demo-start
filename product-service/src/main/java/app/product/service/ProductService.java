@@ -33,12 +33,14 @@ public class ProductService {
     }
 
     public CreateProductResponse create(CreateProductRequest request) {
+        CreateProductResponse response = new CreateProductResponse();
         Product product = new Product();
         product.id = UUID.randomUUID().toString();
-        product.name = "The Burger";
-        product.description = "This is a burger";
+        response.id = product.id;
+        product.name = request.name;
+        product.description = request.description;
         productCollection.insert(product);
-        return null;
+        return response;
     }
 
     public UpdateProductResponse update(String id, UpdateProductRequest request) {
@@ -55,6 +57,9 @@ public class ProductService {
     }
 
     public DeleteProductResponse delete(String id) {
-        return null;
+        DeleteProductResponse response = new DeleteProductResponse();
+        response.id = id;
+        productCollection.delete(id);
+        return response;
     }
 }

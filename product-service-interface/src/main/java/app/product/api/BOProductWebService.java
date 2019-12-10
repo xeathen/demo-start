@@ -21,7 +21,7 @@ import core.framework.api.web.service.ResponseStatus;
 public interface BOProductWebService {
     @GET
     @Path("/bo/product/:id")
-    BOGetProductResponse get(@PathParam("id") Long id);
+    BOGetProductResponse get(@PathParam("id") String id);
 
     @POST
     @Path("/bo/product")
@@ -30,9 +30,9 @@ public interface BOProductWebService {
 
     @PUT
     @Path("/bo/product/:id")
-    BOUpdateProductResponse update(@PathParam("id") Long id, BOUpdateProductRequest request);
+    BOUpdateProductResponse update(@PathParam("id") String id, BOUpdateProductRequest request);
 
     @DELETE
     @Path("/bo/product/:id")
-    BODeleteProductResponse delete(@PathParam("id") Long id);
+    BODeleteProductResponse delete(@PathParam("id") String id);
 }
