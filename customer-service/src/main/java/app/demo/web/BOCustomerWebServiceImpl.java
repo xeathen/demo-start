@@ -19,7 +19,7 @@ public class BOCustomerWebServiceImpl implements BOCustomerWebService {
 
     @Override
     public BOGetCustomerResponse get(Long id) {
-        return null;
+        return boCustomerService.get(id);
     }
 
     @Override
@@ -29,11 +29,11 @@ public class BOCustomerWebServiceImpl implements BOCustomerWebService {
 
     @Override
     public BOUpdateCustomerResponse update(Long id, BOUpdateCustomerRequest request) {
-        return null;
+        return boCustomerService.update(id, request);
     }
 
     @Override
     public BODeleteCustomerResponse delete(Long id) {
-        return null;
+        return boCustomerService.delete(id);
     }
 }
