@@ -12,11 +12,11 @@ public class BackOfficeApp extends App {
     protected void initialize() {
         load(new SystemModule("sys.properties"));
         loadProperties("app.properties");
-        http().gzip();
-        http().httpPort(8443);
-        http().access().denyFromFile("deny-ip-list.txt");
-        site().security();
-        log().maskFields("password");
+//        http().gzip();
+//        http().httpPort(8443);
+//        http().access().denyFromFile("deny-ip-list.txt");
+//        site().security();
+//        log().maskFields("password");
         load(new BackOfficeModule());
     }
 }
