@@ -1,5 +1,6 @@
 package app.product.service;
 
+import app.product.api.kafka.ProductCreatedMessage;
 import app.product.api.product.CreateProductRequest;
 import app.product.api.product.CreateProductResponse;
 import app.product.api.product.DeleteProductResponse;
@@ -7,11 +8,14 @@ import app.product.api.product.GetProductResponse;
 import app.product.api.product.UpdateProductRequest;
 import app.product.api.product.UpdateProductResponse;
 import app.product.domain.Product;
+import core.framework.async.Executor;
 import core.framework.inject.Inject;
+import core.framework.kafka.MessagePublisher;
 import core.framework.mongo.MongoCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -22,6 +26,10 @@ public class ProductService {
     private final Logger logger = LoggerFactory.getLogger(ProductService.class);
     @Inject
     MongoCollection<Product> productCollection;
+    @Inject
+    Executor executor;
+    @Inject
+    MessagePublisher<ProductCreatedMessage> publisher;
 
     public GetProductResponse get(String id) {
         GetProductResponse response = new GetProductResponse();
@@ -61,5 +69,16 @@ public class ProductService {
         response.id = id;
         productCollection.delete(id);
         return response;
+    }
+
+    public void printCurrentTime() {
+        executor.submit("product-created", () -> {
+            logger.warn(ZonedDateTime.now().toString());
+        });
+        String productId = UUID.randomUUID().toString();
+        ProductCreatedMessage message = new ProductCreatedMessage();
+        message.productId = productId;
+        message.productMadeDate = ZonedDateTime.now();
+        publisher.publish(productId, message);
     }
 }

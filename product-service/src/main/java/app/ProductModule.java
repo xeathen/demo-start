@@ -1,7 +1,9 @@
 package app;
 
+import app.kafka.ProductCreatedMessageHandler;
 import app.product.api.BOProductWebService;
 import app.product.api.ProductWebService;
+import app.product.api.kafka.ProductCreatedMessage;
 import app.product.domain.Product;
 import app.product.service.BOProductService;
 import app.product.service.ProductService;
@@ -23,5 +25,7 @@ public class ProductModule extends Module {
         bind(BOProductService.class);
         api().service(ProductWebService.class, bind(ProductWebServiceImpl.class));
         api().service(BOProductWebService.class, bind(BOProductWebServiceImpl.class));
+        bean(ProductService.class).printCurrentTime();
+        kafka().subscribe("product-created", ProductCreatedMessage.class, new ProductCreatedMessageHandler());
     }
 }
