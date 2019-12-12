@@ -75,6 +75,9 @@ public class ProductService {
         executor.submit("product-created", () -> {
             logger.warn(ZonedDateTime.now().toString());
         });
+    }
+
+    public void publish() {
         String productId = UUID.randomUUID().toString();
         ProductCreatedMessage message = new ProductCreatedMessage();
         message.productId = productId;
