@@ -1,11 +1,11 @@
-package app.demo.api;
+package app.customer.api;
 
-import app.demo.api.customer.CreateCustomerRequest;
-import app.demo.api.customer.CreateCustomerResponse;
-import app.demo.api.customer.DeleteCustomerResponse;
-import app.demo.api.customer.GetCustomerResponse;
-import app.demo.api.customer.UpdateCustomerRequest;
-import app.demo.api.customer.UpdateCustomerResponse;
+import app.customer.api.customer.CreateCustomerRequest;
+import app.customer.api.customer.CreateCustomerResponse;
+import app.customer.api.customer.DeleteCustomerResponse;
+import app.customer.api.customer.GetCustomerResponse;
+import app.customer.api.customer.UpdateCustomerRequest;
+import app.customer.api.customer.UpdateCustomerResponse;
 import core.framework.api.http.HTTPStatus;
 import core.framework.api.web.service.DELETE;
 import core.framework.api.web.service.GET;

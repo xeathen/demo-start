@@ -6,7 +6,7 @@ import app.bo.customer.service.CustomerService;
 import app.bo.customer.web.CustomerAJAXWebServiceImpl;
 import app.bo.product.service.ProductService;
 import app.bo.product.web.ProductAJAXWebServiceImpl;
-import app.demo.api.BOCustomerWebService;
+import app.customer.api.BOCustomerWebService;
 import app.product.api.BOProductWebService;
 import core.framework.module.Module;
 

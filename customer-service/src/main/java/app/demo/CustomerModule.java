@@ -1,7 +1,7 @@
 package app.demo;
 
-import app.demo.api.BOCustomerWebService;
-import app.demo.api.CustomerWebService;
+import app.customer.api.BOCustomerWebService;
+import app.customer.api.CustomerWebService;
 import app.demo.domain.Customer;
 import app.demo.service.BOCustomerService;
 import app.demo.service.CustomerService;

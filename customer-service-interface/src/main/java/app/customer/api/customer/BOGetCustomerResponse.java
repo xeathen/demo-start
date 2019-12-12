@@ -1,4 +1,4 @@
-package app.demo.api.customer;
+package app.customer.api.customer;
 
 import core.framework.api.json.Property;
 
@@ -6,7 +6,7 @@ import core.framework.api.json.Property;
  * @author xeathen
  * @date 2019/12/8 16:51
  */
-public class BOUpdateCustomerResponse {
+public class BOGetCustomerResponse {
     @Property(name = "id")
     public Long id;
 

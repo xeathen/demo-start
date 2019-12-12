@@ -1,11 +1,11 @@
 package app.demo.service;
 
-import app.demo.api.customer.BOCreateCustomerRequest;
-import app.demo.api.customer.BOCreateCustomerResponse;
-import app.demo.api.customer.BODeleteCustomerResponse;
-import app.demo.api.customer.BOGetCustomerResponse;
-import app.demo.api.customer.BOUpdateCustomerRequest;
-import app.demo.api.customer.BOUpdateCustomerResponse;
+import app.customer.api.customer.BOCreateCustomerRequest;
+import app.customer.api.customer.BOCreateCustomerResponse;
+import app.customer.api.customer.BODeleteCustomerResponse;
+import app.customer.api.customer.BOGetCustomerResponse;
+import app.customer.api.customer.BOUpdateCustomerRequest;
+import app.customer.api.customer.BOUpdateCustomerResponse;
 import app.demo.domain.Customer;
 import app.demo.domain.CustomerStatus;
 import core.framework.api.web.service.PathParam;

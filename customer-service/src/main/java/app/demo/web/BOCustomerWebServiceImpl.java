@@ -1,12 +1,12 @@
 package app.demo.web;
 
-import app.demo.api.BOCustomerWebService;
-import app.demo.api.customer.BOCreateCustomerRequest;
-import app.demo.api.customer.BOCreateCustomerResponse;
-import app.demo.api.customer.BODeleteCustomerResponse;
-import app.demo.api.customer.BOGetCustomerResponse;
-import app.demo.api.customer.BOUpdateCustomerRequest;
-import app.demo.api.customer.BOUpdateCustomerResponse;
+import app.customer.api.BOCustomerWebService;
+import app.customer.api.customer.BOCreateCustomerRequest;
+import app.customer.api.customer.BOCreateCustomerResponse;
+import app.customer.api.customer.BODeleteCustomerResponse;
+import app.customer.api.customer.BOGetCustomerResponse;
+import app.customer.api.customer.BOUpdateCustomerRequest;
+import app.customer.api.customer.BOUpdateCustomerResponse;
 import app.demo.service.BOCustomerService;
 import core.framework.inject.Inject;
 

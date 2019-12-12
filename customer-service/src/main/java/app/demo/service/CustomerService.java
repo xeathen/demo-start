@@ -1,11 +1,11 @@
 package app.demo.service;
 
-import app.demo.api.customer.CreateCustomerRequest;
-import app.demo.api.customer.CreateCustomerResponse;
-import app.demo.api.customer.DeleteCustomerResponse;
-import app.demo.api.customer.GetCustomerResponse;
-import app.demo.api.customer.UpdateCustomerRequest;
-import app.demo.api.customer.UpdateCustomerResponse;
+import app.customer.api.customer.CreateCustomerRequest;
+import app.customer.api.customer.CreateCustomerResponse;
+import app.customer.api.customer.DeleteCustomerResponse;
+import app.customer.api.customer.GetCustomerResponse;
+import app.customer.api.customer.UpdateCustomerRequest;
+import app.customer.api.customer.UpdateCustomerResponse;
 import app.demo.domain.Customer;
 import app.demo.domain.CustomerStatus;
 import core.framework.db.Repository;
