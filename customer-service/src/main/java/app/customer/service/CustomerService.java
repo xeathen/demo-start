@@ -1,4 +1,4 @@
-package app.demo.service;
+package app.customer.service;
 
 import app.customer.api.customer.CreateCustomerRequest;
 import app.customer.api.customer.CreateCustomerResponse;
@@ -6,8 +6,8 @@ import app.customer.api.customer.DeleteCustomerResponse;
 import app.customer.api.customer.GetCustomerResponse;
 import app.customer.api.customer.UpdateCustomerRequest;
 import app.customer.api.customer.UpdateCustomerResponse;
-import app.demo.domain.Customer;
-import app.demo.domain.CustomerStatus;
+import app.customer.domain.Customer;
+import app.customer.domain.CustomerStatus;
 import core.framework.db.Repository;
 import core.framework.inject.Inject;
 import core.framework.web.exception.ConflictException;

@@ -1,4 +1,4 @@
-package app.demo;
+package app.customer;
 
 import core.framework.module.Module;
 

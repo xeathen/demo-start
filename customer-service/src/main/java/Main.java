@@ -1,4 +1,4 @@
-import app.demo.DemoApp;
+import app.customer.DemoApp;
 
 /**
  * @author Ethan

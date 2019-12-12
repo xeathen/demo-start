@@ -1,4 +1,4 @@
-package app.demo.domain;
+package app.customer.domain;
 
 import core.framework.db.DBEnumValue;
 

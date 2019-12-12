@@ -1,4 +1,4 @@
-package app.demo.demo;
+package app.customer.demo;
 
 import core.framework.inject.Inject;
 import core.framework.log.Markers;

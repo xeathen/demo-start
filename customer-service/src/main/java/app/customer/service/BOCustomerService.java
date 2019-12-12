@@ -1,4 +1,4 @@
-package app.demo.service;
+package app.customer.service;
 
 import app.customer.api.customer.BOCreateCustomerRequest;
 import app.customer.api.customer.BOCreateCustomerResponse;
@@ -6,8 +6,8 @@ import app.customer.api.customer.BODeleteCustomerResponse;
 import app.customer.api.customer.BOGetCustomerResponse;
 import app.customer.api.customer.BOUpdateCustomerRequest;
 import app.customer.api.customer.BOUpdateCustomerResponse;
-import app.demo.domain.Customer;
-import app.demo.domain.CustomerStatus;
+import app.customer.domain.Customer;
+import app.customer.domain.CustomerStatus;
 import core.framework.api.web.service.PathParam;
 import core.framework.db.Database;
 import core.framework.db.Repository;

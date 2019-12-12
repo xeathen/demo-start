@@ -1,4 +1,4 @@
-package app.demo.web;
+package app.customer.web;
 
 import app.customer.api.CustomerWebService;
 import app.customer.api.customer.CreateCustomerRequest;
@@ -7,7 +7,7 @@ import app.customer.api.customer.DeleteCustomerResponse;
 import app.customer.api.customer.GetCustomerResponse;
 import app.customer.api.customer.UpdateCustomerRequest;
 import app.customer.api.customer.UpdateCustomerResponse;
-import app.demo.service.CustomerService;
+import app.customer.service.CustomerService;
 import core.framework.inject.Inject;
 
 /**

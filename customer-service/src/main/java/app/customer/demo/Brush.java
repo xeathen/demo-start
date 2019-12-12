@@ -1,4 +1,4 @@
-package app.demo.demo;
+package app.customer.demo;
 
 /**
  * @author Ethan
