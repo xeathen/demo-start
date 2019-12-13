@@ -24,10 +24,7 @@ public class ProductModule extends Module {
         api().service(ProductWebService.class, bind(ProductWebServiceImpl.class));
         api().service(BOProductWebService.class, bind(BOProductWebServiceImpl.class));
         ProductService bean = bean(ProductService.class);
-        bean.publish();
-//        schedule().fixedRate("test-job",bind(ProductJob.class), Duration.ofSeconds(2));
+//        bean.publish();
+//        schedule().fixedRate("publish-job", bind(ProductJob.class), Duration.ofSeconds(2));
     }
-
-
-
 }

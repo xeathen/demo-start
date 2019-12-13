@@ -4,6 +4,8 @@ import app.product.api.product.CreateProductRequest;
 import app.product.api.product.CreateProductResponse;
 import app.product.api.product.DeleteProductResponse;
 import app.product.api.product.GetProductResponse;
+import app.product.api.product.SearchProductRequest;
+import app.product.api.product.SearchProductResponse;
 import app.product.api.product.UpdateProductRequest;
 import app.product.api.product.UpdateProductResponse;
 import core.framework.api.http.HTTPStatus;
@@ -19,6 +21,10 @@ import core.framework.api.web.service.ResponseStatus;
  * @author Ethan
  */
 public interface ProductWebService {
+    @GET
+    @Path("/product")
+    SearchProductResponse search(SearchProductRequest request);
+
     @GET
     @Path("/product/:id")
     GetProductResponse get(@PathParam("id") String id);

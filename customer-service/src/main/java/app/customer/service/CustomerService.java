@@ -4,12 +4,16 @@ import app.customer.api.customer.CreateCustomerRequest;
 import app.customer.api.customer.CreateCustomerResponse;
 import app.customer.api.customer.DeleteCustomerResponse;
 import app.customer.api.customer.GetCustomerResponse;
+import app.customer.api.customer.SearchCustomerRequest;
+import app.customer.api.customer.SearchCustomerResponse;
 import app.customer.api.customer.UpdateCustomerRequest;
 import app.customer.api.customer.UpdateCustomerResponse;
 import app.customer.domain.Customer;
 import app.customer.domain.CustomerStatus;
+import core.framework.db.Query;
 import core.framework.db.Repository;
 import core.framework.inject.Inject;
+import core.framework.util.Strings;
 import core.framework.web.exception.ConflictException;
 import core.framework.web.exception.NotFoundException;
 import org.slf4j.Logger;
@@ -17,6 +21,7 @@ import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author Ethan
@@ -25,6 +30,26 @@ public class CustomerService {
     private final Logger logger = LoggerFactory.getLogger(CustomerService.class);
     @Inject
     Repository<Customer> customerRepository;
+
+    public SearchCustomerResponse search(SearchCustomerRequest request) {
+        SearchCustomerResponse result = new SearchCustomerResponse();
+        Query<Customer> query = customerRepository.select();
+        query.skip(request.skip);
+        query.limit(request.limit);
+        if (!Strings.isBlank(request.email)) {
+            query.where("email = ?", request.email);
+        }
+        if (!Strings.isBlank(request.firstName)) {
+            query.where("first_name like ?", Strings.format("{}%", request.firstName));
+        }
+        if (!Strings.isBlank(request.lastName)) {
+            query.where("last_name like ?", Strings.format("{}%", request.lastName));
+        }
+        result.customers = query.fetch().stream().map(this::convert).collect(Collectors.toList());
+        result.total = query.count();
+
+        return result;
+    }
 
     public GetCustomerResponse get(Long id) {
         Customer customer = customerRepository.get(id).orElseThrow(() -> new NotFoundException("customer not found, id=" + id));
@@ -78,5 +103,14 @@ public class CustomerService {
         response.email = customer.email;
         customerRepository.delete(id);
         return response;
+    }
+
+    public GetCustomerResponse convert(Customer customer) {
+        GetCustomerResponse result = new GetCustomerResponse();
+        result.id = customer.id;
+        result.email = customer.email;
+        result.firstName = customer.firstName;
+        result.lastName = customer.lastName;
+        return result;
     }
 }

@@ -5,6 +5,8 @@ import app.customer.api.customer.CreateCustomerRequest;
 import app.customer.api.customer.CreateCustomerResponse;
 import app.customer.api.customer.DeleteCustomerResponse;
 import app.customer.api.customer.GetCustomerResponse;
+import app.customer.api.customer.SearchCustomerRequest;
+import app.customer.api.customer.SearchCustomerResponse;
 import app.customer.api.customer.UpdateCustomerRequest;
 import app.customer.api.customer.UpdateCustomerResponse;
 import app.customer.service.CustomerService;
@@ -17,6 +19,11 @@ import core.framework.inject.Inject;
 public class CustomerWebServiceImpl implements CustomerWebService {
     @Inject
     CustomerService customerService;
+
+    @Override
+    public SearchCustomerResponse search(SearchCustomerRequest request) {
+        return customerService.search(request);
+    }
 
     @Override
     public GetCustomerResponse get(Long id) {

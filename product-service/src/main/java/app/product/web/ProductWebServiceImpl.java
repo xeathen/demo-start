@@ -5,6 +5,8 @@ import app.product.api.product.CreateProductRequest;
 import app.product.api.product.CreateProductResponse;
 import app.product.api.product.DeleteProductResponse;
 import app.product.api.product.GetProductResponse;
+import app.product.api.product.SearchProductRequest;
+import app.product.api.product.SearchProductResponse;
 import app.product.api.product.UpdateProductRequest;
 import app.product.api.product.UpdateProductResponse;
 import app.product.service.ProductService;
@@ -19,6 +21,11 @@ public class ProductWebServiceImpl implements ProductWebService {
     private final Logger logger = LoggerFactory.getLogger(ProductWebServiceImpl.class);
     @Inject
     ProductService productService;
+
+    @Override
+    public SearchProductResponse search(SearchProductRequest request) {
+        return productService.search(request);
+    }
 
     @Override
     public GetProductResponse get(String id) {

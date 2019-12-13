@@ -4,6 +4,8 @@ import app.customer.api.customer.CreateCustomerRequest;
 import app.customer.api.customer.CreateCustomerResponse;
 import app.customer.api.customer.DeleteCustomerResponse;
 import app.customer.api.customer.GetCustomerResponse;
+import app.customer.api.customer.SearchCustomerRequest;
+import app.customer.api.customer.SearchCustomerResponse;
 import app.customer.api.customer.UpdateCustomerRequest;
 import app.customer.api.customer.UpdateCustomerResponse;
 import core.framework.api.http.HTTPStatus;
@@ -20,6 +22,10 @@ import core.framework.api.web.service.ResponseStatus;
  * @date 2019/12/8 16:45
  */
 public interface CustomerWebService {
+    @GET
+    @Path("/customer")
+    SearchCustomerResponse search(SearchCustomerRequest request);
+
     @GET
     @Path("/customer/:id")
     GetCustomerResponse get(@PathParam("id") Long id);
