@@ -15,6 +15,8 @@ import core.framework.async.Executor;
 import core.framework.inject.Inject;
 import core.framework.kafka.MessagePublisher;
 import core.framework.mongo.MongoCollection;
+import core.framework.mongo.Query;
+import core.framework.util.Strings;
 import org.bson.conversions.Bson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,13 +43,15 @@ public class ProductService {
     public SearchProductResponse search(SearchProductRequest request) {
         SearchProductResponse result = new SearchProductResponse();
         List<GetProductResponse> responseList = new ArrayList<>();
-//        Query query = new Query();
         Bson name = Filters.eq("name", request.name);
-//        query.filter = name;
-//        productCollection.find(query).stream().forEach(product -> {
-//            responseList.add(convert(product));
-//        });
-        result.products = productCollection.find(name).stream().map(this::convert).collect(Collectors.toList());
+        Query query = new Query();
+        if (!Strings.isBlank(request.description)) {
+            Bson desc = Filters.eq("desc", request.description);
+            query.filter = Filters.and(name, desc);
+        } else {
+            query.filter = Filters.and(name);
+        }
+        result.products = productCollection.find(query).stream().map(this::convert).collect(Collectors.toList());
         return result;
     }
 

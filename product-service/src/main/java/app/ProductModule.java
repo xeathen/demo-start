@@ -1,5 +1,6 @@
 package app;
 
+import app.job.ProductJob;
 import app.product.api.BOProductWebService;
 import app.product.api.ProductWebService;
 import app.product.domain.Product;
@@ -9,6 +10,8 @@ import app.product.web.BOProductWebServiceImpl;
 import app.product.web.ProductWebServiceImpl;
 import core.framework.module.Module;
 import core.framework.mongo.module.MongoConfig;
+
+import java.time.Duration;
 
 /**
  * @author Ethan
@@ -23,8 +26,8 @@ public class ProductModule extends Module {
         bind(BOProductService.class);
         api().service(ProductWebService.class, bind(ProductWebServiceImpl.class));
         api().service(BOProductWebService.class, bind(BOProductWebServiceImpl.class));
-        ProductService bean = bean(ProductService.class);
+//        ProductService bean = bean(ProductService.class);
 //        bean.publish();
-//        schedule().fixedRate("publish-job", bind(ProductJob.class), Duration.ofSeconds(2));
+        schedule().fixedRate("publish-job", bind(ProductJob.class), Duration.ofSeconds(2));
     }
 }

@@ -72,6 +72,7 @@ configure([project(':product-service'),
 project(':customer-service') {
     dependencies {
         implementation project(':customer-service-interface')
+        implementation project(':product-service-interface')
         runtimeOnly 'mysql:mysql-connector-java:8.0.17'
     }
 }

@@ -7,6 +7,8 @@ import app.customer.service.BOCustomerService;
 import app.customer.service.CustomerService;
 import app.customer.web.BOCustomerWebServiceImpl;
 import app.customer.web.CustomerWebServiceImpl;
+import app.kafka.ProductCreatedMessageHandler;
+import app.product.api.kafka.ProductCreatedMessage;
 import core.framework.module.Module;
 
 /**
@@ -22,5 +24,13 @@ public class CustomerModule extends Module {
         bind(BOCustomerService.class);
         api().service(CustomerWebService.class, bind(CustomerWebServiceImpl.class));
         api().service(BOCustomerWebService.class, bind(BOCustomerWebServiceImpl.class));
+        configureKafka();
+    }
+
+    private void configureKafka() {
+        kafka().uri("localhost:9092");
+        String topic = "product-created";
+        kafka().subscribe(topic, ProductCreatedMessage.class, bind(ProductCreatedMessageHandler.class));
+        kafka().poolSize(1);
     }
 }
