@@ -8,10 +8,14 @@ import app.product.service.BOProductService;
 import app.product.service.ProductService;
 import app.product.web.BOProductWebServiceImpl;
 import app.product.web.ProductWebServiceImpl;
+import core.framework.api.http.HTTPStatus;
 import core.framework.module.Module;
 import core.framework.mongo.module.MongoConfig;
+import core.framework.web.Response;
 
 import java.time.Duration;
+
+import static core.framework.http.HTTPMethod.GET;
 
 /**
  * @author Ethan
@@ -29,5 +33,6 @@ public class ProductModule extends Module {
 //        ProductService bean = bean(ProductService.class);
 //        bean.publish();
         schedule().fixedRate("publish-job", bind(ProductJob.class), Duration.ofSeconds(2));
+        http().route(GET, "/hello", request -> Response.text("hello").status(HTTPStatus.CREATED));
     }
 }

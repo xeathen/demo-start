@@ -6,12 +6,11 @@ import core.framework.module.SystemModule;
 /**
  * @author Ethan
  */
-public class DemoApp extends App {
+public class CustomerServiceApp extends App {
 
     @Override
     protected void initialize() {
         load(new SystemModule("sys.properties"));
-//        load(new DemoModule());
         load(new CustomerModule());
     }
 }

@@ -17,6 +17,7 @@ import core.framework.kafka.MessagePublisher;
 import core.framework.mongo.MongoCollection;
 import core.framework.mongo.Query;
 import core.framework.util.Strings;
+import core.framework.web.exception.NotFoundException;
 import org.bson.conversions.Bson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +25,6 @@ import org.slf4j.LoggerFactory;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -57,10 +57,10 @@ public class ProductService {
 
     public GetProductResponse get(String id) {
         GetProductResponse result = new GetProductResponse();
-        Optional<Product> product = productCollection.get(id);
-        result.id = product.get().id;
-        result.name = product.get().name;
-        result.description = product.get().description;
+        Product product = productCollection.get(id).orElseThrow(() -> new NotFoundException("product not found, id=" + id));
+        result.id = product.id;
+        result.name = product.name;
+        result.description = product.description;
         return result;
     }
 
@@ -97,7 +97,7 @@ public class ProductService {
 
     public void printCurrentTime() {
         executor.submit("product-created", () -> {
-            logger.warn(ZonedDateTime.now().toString());
+            logger.debug(ZonedDateTime.now().toString());
         });
     }
 

@@ -11,6 +11,7 @@ import app.customer.api.customer.UpdateCustomerRequest;
 import app.customer.api.customer.UpdateCustomerResponse;
 import app.customer.service.CustomerService;
 import core.framework.inject.Inject;
+import core.framework.log.ActionLogContext;
 
 /**
  * @author xeathen
@@ -22,26 +23,32 @@ public class CustomerWebServiceImpl implements CustomerWebService {
 
     @Override
     public SearchCustomerResponse search(SearchCustomerRequest request) {
+        ActionLogContext.put("customerEmail", request.email);
         return customerService.search(request);
     }
 
     @Override
     public GetCustomerResponse get(Long id) {
+        ActionLogContext.put("customerId", id);
         return customerService.get(id);
     }
 
     @Override
     public CreateCustomerResponse create(CreateCustomerRequest request) {
+        ActionLogContext.put("customerEmail", request.email);
         return customerService.create(request);
     }
 
     @Override
     public UpdateCustomerResponse update(Long id, UpdateCustomerRequest request) {
+        ActionLogContext.put("customerId", id);
+        ActionLogContext.put("customerEmail", request.email);
         return customerService.update(id, request);
     }
 
     @Override
     public DeleteCustomerResponse delete(Long id) {
+        ActionLogContext.put("customerId", id);
         return customerService.delete(id);
     }
 }

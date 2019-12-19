@@ -47,7 +47,6 @@ public class CustomerService {
         }
         result.customers = query.fetch().stream().map(this::convert).collect(Collectors.toList());
         result.total = query.count();
-
         return result;
     }
 
@@ -73,7 +72,6 @@ public class CustomerService {
         customer.lastName = request.lastName;
         customer.updatedTime = LocalDateTime.now();
         customer.id = customerRepository.insert(customer).orElseThrow();
-        logger.debug(customer.toString() + "," + customer.firstName);
         CreateCustomerResponse response = new CreateCustomerResponse();
         response.id = customer.id;
         return response;

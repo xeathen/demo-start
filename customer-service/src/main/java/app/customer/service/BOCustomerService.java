@@ -8,7 +8,6 @@ import app.customer.api.customer.BOUpdateCustomerRequest;
 import app.customer.api.customer.BOUpdateCustomerResponse;
 import app.customer.domain.Customer;
 import app.customer.domain.CustomerStatus;
-import core.framework.api.web.service.PathParam;
 import core.framework.db.Database;
 import core.framework.db.Repository;
 import core.framework.db.Transaction;
@@ -29,7 +28,7 @@ public class BOCustomerService {
     @Inject
     Database database;
 
-    public BOGetCustomerResponse get(@PathParam("id") Long id) {
+    public BOGetCustomerResponse get(Long id) {
         Customer customer = customerRepository.get(id).orElseThrow(() -> new NotFoundException("customer not found, id=" + id));
         BOGetCustomerResponse response = new BOGetCustomerResponse();
         response.id = id;
@@ -54,11 +53,29 @@ public class BOCustomerService {
         return response;
     }
 
-    public BOUpdateCustomerResponse update(@PathParam("id") Long id, BOUpdateCustomerRequest request) {
-        return null;
+    public BOUpdateCustomerResponse update(Long id, BOUpdateCustomerRequest request) {
+        BOUpdateCustomerResponse response = new BOUpdateCustomerResponse();
+        response.id = id;
+        Customer customer = customerRepository.get(id).orElseThrow(() -> new NotFoundException("customer not found, id=" + id));
+        customer.updatedTime = LocalDateTime.now();
+        customer.firstName = request.firstName;
+        response.firstName = request.firstName;
+        if (request.lastName != null) {
+            customer.lastName = request.lastName;
+            response.lastName = request.lastName;
+        }
+        customer.email = request.email;
+        response.email = request.email;
+        customerRepository.partialUpdate(customer);
+        return response;
     }
 
-    public BODeleteCustomerResponse delete(@PathParam("id") Long id) {
-        return null;
+    public BODeleteCustomerResponse delete(Long id) {
+        BODeleteCustomerResponse response = new BODeleteCustomerResponse();
+        response.id = id;
+        Customer customer = customerRepository.get(id).orElseThrow(() -> new NotFoundException("customer not found, id=" + id));
+        response.email = customer.email;
+        customerRepository.delete(id);
+        return response;
     }
 }

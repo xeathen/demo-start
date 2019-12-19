@@ -1,3 +1,4 @@
+import com.mongodb.client.model.IndexOptions;
 import com.mongodb.client.model.Indexes;
 import core.framework.mongo.MongoMigration;
 import org.bson.Document;
@@ -15,7 +16,8 @@ public class Main {
 
         migration = new MongoMigration("sys.properties");
         migration.migrate(mongo -> {
-            mongo.createIndex("products", Indexes.ascending("name"));
+            mongo.createIndex("products", Indexes.ascending("name"), new IndexOptions().name("uni_products_name").unique(true).background(true));
+            mongo.createIndex("products", Indexes.ascending("name", "desc"), new IndexOptions().name("ind_product_name_desc").background(true));
         });
     }
 }

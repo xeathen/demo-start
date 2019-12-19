@@ -1,4 +1,4 @@
-import app.customer.DemoApp;
+import app.customer.CustomerServiceApp;
 
 /**
  * @author Ethan
@@ -6,6 +6,6 @@ import app.customer.DemoApp;
 public class Main {
 
     public static void main(String[] args) {
-        new DemoApp().start();
+        new CustomerServiceApp().start();
     }
 }

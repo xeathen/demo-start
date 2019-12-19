@@ -13,6 +13,6 @@ public class ProductCreatedMessageHandler implements MessageHandler<ProductCreat
 
     @Override
     public void handle(String key, ProductCreatedMessage value) throws Exception {
-        logger.warn("{}-{}", key, value.productId);
+        logger.info("{}-{}", key, value.productId);
     }
 }
