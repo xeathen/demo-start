@@ -16,8 +16,6 @@ import core.framework.inject.Inject;
 import core.framework.util.Strings;
 import core.framework.web.exception.ConflictException;
 import core.framework.web.exception.NotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -27,7 +25,6 @@ import java.util.stream.Collectors;
  * @author Ethan
  */
 public class CustomerService {
-    private final Logger logger = LoggerFactory.getLogger(CustomerService.class);
     @Inject
     Repository<Customer> customerRepository;
 

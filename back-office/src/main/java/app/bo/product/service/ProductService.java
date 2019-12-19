@@ -14,14 +14,11 @@ import app.product.api.product.BOGetProductResponse;
 import app.product.api.product.BOUpdateProductRequest;
 import app.product.api.product.BOUpdateProductResponse;
 import core.framework.inject.Inject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Ethan
  */
 public class ProductService {
-    private final Logger logger = LoggerFactory.getLogger(ProductService.class);
     @Inject
     BOProductWebService boProductWebService;
 

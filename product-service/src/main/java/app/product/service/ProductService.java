@@ -23,8 +23,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -42,7 +40,6 @@ public class ProductService {
 
     public SearchProductResponse search(SearchProductRequest request) {
         SearchProductResponse result = new SearchProductResponse();
-        List<GetProductResponse> responseList = new ArrayList<>();
         Bson name = Filters.eq("name", request.name);
         Query query = new Query();
         if (!Strings.isBlank(request.description)) {

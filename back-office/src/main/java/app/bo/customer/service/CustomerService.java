@@ -14,14 +14,11 @@ import app.customer.api.customer.BOGetCustomerResponse;
 import app.customer.api.customer.BOUpdateCustomerRequest;
 import app.customer.api.customer.BOUpdateCustomerResponse;
 import core.framework.inject.Inject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Ethan
  */
 public class CustomerService {
-    private final Logger logger = LoggerFactory.getLogger(CustomerService.class);
     @Inject
     BOCustomerWebService boCustomerWebService;
 

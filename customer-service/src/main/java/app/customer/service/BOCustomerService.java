@@ -13,8 +13,6 @@ import core.framework.db.Repository;
 import core.framework.db.Transaction;
 import core.framework.inject.Inject;
 import core.framework.web.exception.NotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 
@@ -22,7 +20,6 @@ import java.time.LocalDateTime;
  * @author Ethan
  */
 public class BOCustomerService {
-    private final Logger logger = LoggerFactory.getLogger(BOCustomerService.class);
     @Inject
     Repository<Customer> customerRepository;
     @Inject

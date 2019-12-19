@@ -12,14 +12,11 @@ import app.product.api.product.UpdateProductResponse;
 import app.product.service.ProductService;
 import core.framework.inject.Inject;
 import core.framework.log.ActionLogContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Ethan
  */
 public class ProductWebServiceImpl implements ProductWebService {
-    private final Logger logger = LoggerFactory.getLogger(ProductWebServiceImpl.class);
     @Inject
     ProductService productService;
 
@@ -45,7 +42,6 @@ public class ProductWebServiceImpl implements ProductWebService {
     public UpdateProductResponse update(String id, UpdateProductRequest request) {
         ActionLogContext.put("productId", id);
         ActionLogContext.put("productName", request.name);
-
         return productService.update(id, request);
     }
 

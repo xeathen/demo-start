@@ -10,14 +10,11 @@ import app.product.api.product.BOUpdateProductResponse;
 import app.product.service.BOProductService;
 import core.framework.inject.Inject;
 import core.framework.log.ActionLogContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Ethan
  */
 public class BOProductWebServiceImpl implements BOProductWebService {
-    private final Logger logger = LoggerFactory.getLogger(BOProductWebServiceImpl.class);
     @Inject
     BOProductService boProductService;
 

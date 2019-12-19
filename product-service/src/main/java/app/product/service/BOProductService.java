@@ -9,8 +9,6 @@ import app.product.api.product.BOUpdateProductResponse;
 import app.product.domain.Product;
 import core.framework.inject.Inject;
 import core.framework.mongo.MongoCollection;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -19,7 +17,6 @@ import java.util.UUID;
  * @author Ethan
  */
 public class BOProductService {
-    private final Logger logger = LoggerFactory.getLogger(BOProductService.class);
     @Inject
     MongoCollection<Product> productCollection;
 
